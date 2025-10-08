@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+  wordpress:
+    image: wordpress:6.5.2-php8.2-apache
+    container_name: or_travel_wp
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'WP_HOME', 'http://localhost:8000' );
+        define( 'WP_SITEURL', 'http://localhost:8000' );
+        define( 'FS_METHOD', 'direct' );
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.0
+    container_name: or_travel_db
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: wordpress
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2
+    container_name: or_travel_phpmyadmin
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_USER: wordpress
+      PMA_PASSWORD: wordpress
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+volumes:
+  db_data:
