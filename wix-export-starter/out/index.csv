@@ -1,0 +1,29 @@
+url,title,slug,html_path,md_path
+https://www.orhorvitztravel.com,Travel | Or Around the World,home,out\html\home.html,out\md\home.md
+https://www.orhorvitztravel.com/post/boston,boston,post_boston,out\html\post_boston.html,out\md\post_boston.md
+https://www.orhorvitztravel.com/israel,Israel | Or Around the World,israel,out\html\israel.html,out\md\israel.md
+https://www.orhorvitztravel.com/blank,Europe | Or Around the World,blank,out\html\blank.html,out\md\blank.md
+https://www.orhorvitztravel.com/eat,Asia | Or Around the World,eat,out\html\eat.html,out\md\eat.md
+https://www.orhorvitztravel.com/post/colorado,קולורדו: החיים בצבע,post_colorado,out\html\post_colorado.html,out\md\post_colorado.md
+https://www.orhorvitztravel.com/videos,America | Or Around the World,videos,out\html\videos.html,out\md\videos.md
+https://www.orhorvitztravel.com/about,About | Or Around the World,about,out\html\about.html,out\md\about.md
+https://www.orhorvitztravel.com/relax,Africa | Or Around the World,relax,out\html\relax.html,out\md\relax.md
+https://www.orhorvitztravel.com/blog/categories/asia,Asia,blog_categories_asia,out\html\blog_categories_asia.html,out\md\blog_categories_asia.md
+https://www.orhorvitztravel.com/post/charleston_savannah,קסם דרומי: צ'ארלסטון וסוואנה,post_charleston_savannah,out\html\post_charleston_savannah.html,out\md\post_charleston_savannah.md
+https://www.orhorvitztravel.com/blog,Blog | Or Around the World,blog,out\html\blog.html,out\md\blog.md
+https://www.orhorvitztravel.com/blog/categories/america,America,blog_categories_america,out\html\blog_categories_america.html,out\md\blog_categories_america.md
+https://www.orhorvitztravel.com/blog/categories/europe,Europe,blog_categories_europe,out\html\blog_categories_europe.html,out\md\blog_categories_europe.md
+https://www.orhorvitztravel.com/blog/categories/israel,Israel,blog_categories_israel,out\html\blog_categories_israel.html,out\md\blog_categories_israel.md
+https://www.orhorvitztravel.com/post/yellowstone_grand-teton,הטבע - ללא פילטרים. הפארקים הלאומיים ילוסטון וגרנד טיטון,post_yellowstone_grand-teton,out\html\post_yellowstone_grand-teton.html,out\md\post_yellowstone_grand-teton.md
+https://www.orhorvitztravel.com/blog/categories/africa,Africa,blog_categories_africa,out\html\blog_categories_africa.html,out\md\blog_categories_africa.md
+https://www.orhorvitztravel.com/post/paphos,יומיים בפאפוס - ולא רק בקיץ,post_paphos,out\html\post_paphos.html,out\md\post_paphos.md
+https://www.orhorvitztravel.com/post/romania,רומניה - תרגיל בהתעוררות,post_romania,out\html\post_romania.html,out\md\post_romania.md
+https://www.orhorvitztravel.com/post/kyrgyzstan,על גגה של דרך המשי - קירגיזסטן,post_kyrgyzstan,out\html\post_kyrgyzstan.html,out\md\post_kyrgyzstan.md
+https://www.orhorvitztravel.com/post/north_india,בארץ השלווה והכאוס - צפון הודו,post_north_india,out\html\post_north_india.html,out\md\post_north_india.md
+https://www.orhorvitztravel.com/post/altavia1_venezia,להשקיף על איטליה מלמעלה - אלטה ויה 1,post_altavia1_venezia,out\html\post_altavia1_venezia.html,out\md\post_altavia1_venezia.md
+https://www.orhorvitztravel.com/post/amalfi_abruzzo_umbria,"כל הדרכים יוצאות מרומא - אמאלפי, אברוצו ודגימה מאומבריה",post_amalfi_abruzzo_umbria,out\html\post_amalfi_abruzzo_umbria.html,out\md\post_amalfi_abruzzo_umbria.md
+https://www.orhorvitztravel.com/post/hodakeveinakev,הדרו של המדבר - מחוד עקב לעין עקב,post_hodakeveinakev,out\html\post_hodakeveinakev.html,out\md\post_hodakeveinakev.md
+https://www.orhorvitztravel.com/post/tamplemount,"קרוב כל כך, רחוק כל כך: ביקור בהר הבית",post_tamplemount,out\html\post_tamplemount.html,out\md\post_tamplemount.md
+https://www.orhorvitztravel.com/post/oldcityofjerusalem,תשעה קבין: פינות חמד בעיר העתיקה בירושלים,post_oldcityofjerusalem,out\html\post_oldcityofjerusalem.html,out\md\post_oldcityofjerusalem.md
+https://www.orhorvitztravel.com/post/southafricapart2,מסע בשני פרקים בדרום אפריקה - חלק ב',post_southafricapart2,out\html\post_southafricapart2.html,out\md\post_southafricapart2.md
+https://www.orhorvitztravel.com/post/southafricapart1,מסע בשני פרקים בדרום אפריקה: חלק א',post_southafricapart1,out\html\post_southafricapart1.html,out\md\post_southafricapart1.md
