@@ -378,6 +378,7 @@ function or_travel_get_markdown_article_category_map() {
     return array(
         'boston'                  => 'america',
         'colorado'                => 'america',
+        'colorado-roadtrip'       => 'america',
         'charleston-savannah'     => 'america',
         'yellowstone-grand-teton' => 'america',
         'north-india'             => 'asia',
