@@ -54,6 +54,8 @@ Thumbs.db
 # Local development
 local-xdebuginfo.php
 /wp-uploadables/
+.env.flywheel
+dist/
 
 # Package files
 *.zip
