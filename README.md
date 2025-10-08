@@ -113,8 +113,64 @@ docker compose down
 
 This stops all services while leaving the database volume intact for the next session.
 
-## 9. Working with Flywheel and Local
+## 9. Working with Flywheel, Local, and VS Code
 
-If you manage the production site on Flywheel and prefer to develop using the Local desktop app and VS Code, follow the
-[Local ↔ Flywheel Workflow](docs/local-flywheel-sync.md). The guide walks through cloning this repository, wiring the
-`wp-content` directory into a Local-connected Flywheel site, and keeping GitHub, Local, and the Flywheel environment in sync.
+When the production site lives on Flywheel, the recommended workflow is to treat this repository as the source of truth and
+use [Local](https://localwp.com/) + VS Code as the bridge between GitHub and Flywheel. The helper scripts in `bin/` automate the
+link between Local, Git, and Flywheel so you do not have to wire things up manually. The high-level loop looks like this:
+
+1. **Clone this repository locally** and open it in VS Code.
+2. **Pull the Flywheel site into Local** so that you have the latest database/uploads.
+3. **Run `./bin/sync-local.sh --site-name <local-site>`** to replace Local's `wp-content` with the copy from this repo (symlink or
+   copy) so Local, VS Code, and Git all use the same files.
+4. Develop and commit in VS Code; test changes in the Local site.
+5. **Deploy back to Flywheel** either from Local or by running `./bin/deploy-to-flywheel.sh`.
+
+The detailed, step-by-step instructions—including screenshots, Local UI callouts, and troubleshooting tips—are collected in the
+[Local ↔ Flywheel Workflow](docs/local-flywheel-sync.md) guide. Follow that document whenever you need to re-sync the
+production Flywheel site, your Local environment, and GitHub.
+
+### Quick start: running the automation scripts
+
+Once this pull request is merged, use the helper scripts in `bin/` to keep Local, Git, and Flywheel in sync:
+
+1. **Install prerequisites**
+   - [Local](https://localwp.com/) and the Flywheel Connect add-on (ships with Local ≥ 8)
+   - `lftp` for deployments: `brew install lftp` (macOS) or `sudo apt-get install lftp` (Debian/Ubuntu)
+2. **Clone the repository and open it in VS Code**
+   ```bash
+   git clone git@github.com:leraShtotland/or-travel-wp.git
+   cd or-travel-wp
+   code .
+   ```
+3. **Pull the production site into Local** (Local → **Create** → **Connect to Flywheel** → choose `orhorvitztravel`).
+4. **Link Local to this repo**
+   ```bash
+   ./bin/sync-local.sh --site-name orhorvitztravel --symlink
+   ```
+   Add `--local-sites-dir "/path/to/Local Sites"` if you store Local sites outside the default location. Use `--copy` instead of `--symlink` if your OS does not allow symlinks.
+5. **Create Flywheel credentials**
+   ```bash
+   cp .env.flywheel.example .env.flywheel
+   # fill in the values from the Flywheel dashboard
+   ```
+6. **Deploy file changes to Flywheel when ready**
+   ```bash
+   ./bin/deploy-to-flywheel.sh
+   ```
+   Add `--dry-run` to preview, or `--only-themes` to sync just the child theme directory.
+7. **Package the child theme (optional)**
+   ```bash
+   ./bin/package-theme.sh
+   ```
+   The ZIP is written to `dist/` for manual installs.
+
+### Packaging the theme for manual installs
+
+If you only need to hand off a ZIP file of the theme (for example, to install via the WordPress admin), run:
+
+```bash
+./bin/package-theme.sh
+```
+
+The command writes a versioned archive to the `dist/` directory.
