@@ -1,0 +1,80 @@
+/*
+ Theme Name: Or Travel Child
+ Theme URI: https://yourdomain.co.il
+ Description: Astra child theme for Or Travel (agent + services) - Modern, RTL-ready theme for travel consultation services
+ Author: Or Horovitz
+ Author URI: https://yourdomain.co.il
+ Template: astra
+ Version: 1.0.0
+ License: GPL v2 or later
+ License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain: or-travel-child
+ Tags: rtl-language-support, one-column, two-columns, custom-header, custom-menu, custom-logo, featured-images, footer-widgets, full-width-template, theme-options, translation-ready
+*/
+
+/* Import parent theme styles */
+@import url("../astra/style.css");
+
+/* Base overrides for Astra theme */
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --text-color: #111827;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* Ensure RTL layout */
+html[dir="rtl"] body,
+body.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Override Astra defaults for better appearance */
+.ast-container {
+    max-width: 1200px;
+}
+
+.site-header .ast-container {
+    padding: 15px 30px;
+}
+
+/* Menu alignment for RTL */
+.main-header-menu {
+    text-align: right;
+}
+
+.main-header-menu > .menu-item > a {
+    padding: 0 20px;
+}
+
+/* Content spacing */
+.site-content .ast-container {
+    padding: 40px 30px;
+}
+
+/* Typography defaults */
+body,
+button,
+input,
+select,
+textarea {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Arial Hebrew', Arial, sans-serif;
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+a:hover,
+a:focus {
+    color: var(--secondary-color);
+}
+
+/* Ensure child theme custom CSS loads */
+.or-travel-loaded {
+    visibility: visible;
+}
