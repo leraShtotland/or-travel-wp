@@ -107,6 +107,10 @@ You can use this as a template for your articles.
 - Grid-based archive
 - Beautiful single article layout
 
+✅ **Wix Blog Migration**
+- Previous Wix posts live in `articles/wix/` as markdown files.
+- The theme automatically imports them into the **US Articles** custom post type and keeps them updated.
+
 ✅ **Image Support**
 - Featured images for cards
 - Content images from markdown

@@ -34,6 +34,12 @@ This child theme for Astra provides enhanced Hebrew/RTL support, an About Me pag
 - Featured images and excerpts
 - Responsive grid display
 
+#### Pre-loaded Wix Articles
+- The theme ships with imported markdown files from the previous Wix blog in `articles/wix/`.
+- On theme activation (or during the next page load) each markdown file is converted into a published **US Article**.
+- Articles are automatically assigned to continent-based categories (America, Europe, Asia, Africa, Israel).
+- Update the markdown files if you want to tweak the content; the importer keeps WordPress in sync on the next load.
+
 #### How to Add Articles:
 
 ##### Method 1: Using Markdown Files

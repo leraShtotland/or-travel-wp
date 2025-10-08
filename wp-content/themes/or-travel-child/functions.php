@@ -224,7 +224,7 @@ function or_travel_seed_initial_content() {
 
     or_travel_ensure_about_page();
     or_travel_ensure_article_categories();
-    or_travel_ensure_initial_us_article();
+    or_travel_import_markdown_articles();
 
     $consultation_page_id = or_travel_ensure_page(
         'consultation',
@@ -364,13 +364,38 @@ function or_travel_ensure_about_page() {
     }
 }
 
-function or_travel_ensure_article_categories() {
-    $categories = array(
-        'east-coast' => __('החוף המזרחי', 'or-travel-child'),
-        'west-coast' => __('החוף המערבי', 'or-travel-child'),
-        'midwest'    => __('המערב התיכון', 'or-travel-child'),
-        'south'      => __('הדרום', 'or-travel-child'),
+function or_travel_get_default_article_categories() {
+    return array(
+        'america' => __('אמריקה', 'or-travel-child'),
+        'europe'  => __('אירופה', 'or-travel-child'),
+        'asia'    => __('אסיה', 'or-travel-child'),
+        'africa'  => __('אפריקה', 'or-travel-child'),
+        'israel'  => __('ישראל', 'or-travel-child'),
     );
+}
+
+function or_travel_get_markdown_article_category_map() {
+    return array(
+        'boston'                  => 'america',
+        'colorado'                => 'america',
+        'charleston-savannah'     => 'america',
+        'yellowstone-grand-teton' => 'america',
+        'north-india'             => 'asia',
+        'kyrgyzstan'              => 'asia',
+        'paphos'                  => 'europe',
+        'romania'                 => 'europe',
+        'amalfi-abruzzo-umbria'   => 'europe',
+        'altavia1-venezia'        => 'europe',
+        'southafricapart1'        => 'africa',
+        'southafricapart2'        => 'africa',
+        'tamplemount'             => 'israel',
+        'oldcityofjerusalem'      => 'israel',
+        'hodakeveinakev'          => 'israel',
+    );
+}
+
+function or_travel_ensure_article_categories() {
+    $categories = or_travel_get_default_article_categories();
 
     foreach ($categories as $slug => $label) {
         if (!term_exists($slug, 'article_category')) {
@@ -385,53 +410,105 @@ function or_travel_ensure_article_categories() {
     }
 }
 
-function or_travel_ensure_initial_us_article() {
-    $markdown_path = get_stylesheet_directory() . '/articles/east-coast-roadtrip.md';
+function or_travel_extract_markdown_title($markdown, $fallback_slug) {
+    if (preg_match('/^#\s+(.+)$/m', $markdown, $matches)) {
+        return trim($matches[1]);
+    }
 
-    if (!file_exists($markdown_path)) {
+    if (preg_match('/^##\s+(.+)$/m', $markdown, $matches)) {
+        return trim($matches[1]);
+    }
+
+    return ucwords(str_replace('-', ' ', $fallback_slug));
+}
+
+function or_travel_generate_markdown_excerpt($markdown) {
+    $paragraphs = preg_split('/\R{2,}/u', trim($markdown));
+
+    if (empty($paragraphs)) {
+        return '';
+    }
+
+    foreach ($paragraphs as $paragraph) {
+        $paragraph = trim($paragraph);
+
+        if ($paragraph === '' || strpos($paragraph, '#') === 0 || strpos($paragraph, '![', 0) === 0) {
+            continue;
+        }
+
+        $excerpt_text = wp_strip_all_tags(or_travel_parse_markdown($paragraph));
+        $excerpt_text = trim($excerpt_text);
+
+        if ($excerpt_text !== '') {
+            return wp_trim_words($excerpt_text, 40, '…');
+        }
+    }
+
+    return '';
+}
+
+function or_travel_import_markdown_articles() {
+    $articles_dir = get_stylesheet_directory() . '/articles/wix';
+
+    if (!is_dir($articles_dir)) {
         return;
     }
 
-    $markdown_content = file_get_contents($markdown_path);
+    $files = glob($articles_dir . '/post_*.md');
 
-    if (false === $markdown_content) {
+    if (empty($files)) {
         return;
     }
 
-    $slug          = 'east-coast-roadtrip';
-    $post_title    = __('הנקודות הבולטות במסע כביש בחוף המזרחי', 'or-travel-child');
-    $post_excerpt  = __('גלו מסע בן חמישה ימים מניו יורק ועד וושינגטון די.סי. המשלב אוכל, היסטוריה ונופי חוף.', 'or-travel-child');
-    $existing_post = get_page_by_path($slug, OBJECT, 'us_article');
+    $category_map = or_travel_get_markdown_article_category_map();
 
-    $post_data = array(
-        'post_title'   => $post_title,
-        'post_name'    => $slug,
-        'post_status'  => 'publish',
-        'post_type'    => 'us_article',
-        'post_content' => $markdown_content,
-        'post_excerpt' => $post_excerpt,
-    );
+    foreach ($files as $file_path) {
+        $markdown_content = file_get_contents($file_path);
 
-    if ($existing_post instanceof WP_Post) {
-        $post_data['ID'] = $existing_post->ID;
-        $post_id         = wp_update_post($post_data, true);
-    } else {
-        $post_data['post_author'] = get_current_user_id() ?: 1;
-        $post_id                  = wp_insert_post($post_data, true);
-    }
+        if (false === $markdown_content) {
+            continue;
+        }
 
-    if (is_wp_error($post_id)) {
-        return;
-    }
+        $filename   = basename($file_path, '.md');
+        $slug_base  = preg_replace('/^post[-_]/', '', $filename);
+        $slug       = sanitize_title($slug_base);
+        $post_title = or_travel_extract_markdown_title($markdown_content, $slug);
+        $excerpt    = or_travel_generate_markdown_excerpt($markdown_content);
 
-    $east_coast_term = get_term_by('slug', 'east-coast', 'article_category');
-    if ($east_coast_term && !is_wp_error($east_coast_term)) {
-        wp_set_post_terms(
-            $post_id,
-            array($east_coast_term->term_id),
-            'article_category',
-            false
+        $post_data = array(
+            'post_title'   => $post_title,
+            'post_name'    => $slug,
+            'post_status'  => 'publish',
+            'post_type'    => 'us_article',
+            'post_content' => $markdown_content,
         );
+
+        if ($excerpt !== '') {
+            $post_data['post_excerpt'] = $excerpt;
+        }
+
+        $existing_post = get_page_by_path($slug, OBJECT, 'us_article');
+
+        if ($existing_post instanceof WP_Post) {
+            $post_data['ID'] = $existing_post->ID;
+            $post_id         = wp_update_post($post_data, true);
+        } else {
+            $post_data['post_author'] = get_current_user_id() ?: 1;
+            $post_id                  = wp_insert_post($post_data, true);
+        }
+
+        if (is_wp_error($post_id)) {
+            continue;
+        }
+
+        if (isset($category_map[$slug])) {
+            $category_slug = $category_map[$slug];
+            $term          = get_term_by('slug', $category_slug, 'article_category');
+
+            if ($term && !is_wp_error($term)) {
+                wp_set_post_terms($post_id, array($term->term_id), 'article_category', false);
+            }
+        }
     }
 }
 
