@@ -13,41 +13,51 @@ get_header(); ?>
                 the_post();
                 ?>
                 
-                <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                    
-                    <header class="entry-header">
-                        <?php
-                        // Display categories
-                        $categories = get_the_terms(get_the_ID(), 'article_category');
-                        if ($categories && !is_wp_error($categories)) : ?>
-                            <div class="article-categories">
-                                <?php foreach ($categories as $category) : ?>
-                                    <a href="<?php echo get_term_link($category); ?>" class="article-category">
-                                        <?php echo esc_html($category->name); ?>
-                                    </a>
-                                <?php endforeach; ?>
+                <article id="post-<?php the_ID(); ?>" <?php post_class('travel-article'); ?>>
+
+                    <header class="article-hero">
+                        <div class="article-meta-top">
+                            <?php
+                            // Display categories
+                            $categories = get_the_terms(get_the_ID(), 'article_category');
+                            if ($categories && !is_wp_error($categories)) : ?>
+                                <div class="article-categories">
+                                    <?php foreach ($categories as $category) : ?>
+                                        <a href="<?php echo esc_url(get_term_link($category)); ?>" class="article-category">
+                                            <?php echo esc_html($category->name); ?>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <div class="article-date">
+                                <span class="article-date-label"><?php esc_html_e('פורסם בתאריך', 'or-travel-child'); ?></span>
+                                <time datetime="<?php echo esc_attr(get_the_date('c')); ?>">
+                                    <?php echo esc_html(get_the_date()); ?>
+                                </time>
                             </div>
-                        <?php endif; ?>
-                        
-                        <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
-                        
-                        <div class="entry-meta">
-                            <time datetime="<?php echo get_the_date('c'); ?>">
-                                <?php echo get_the_date(); ?>
-                            </time>
                         </div>
+
+                        <?php the_title('<h1 class="article-title">', '</h1>'); ?>
+
+                        <?php if (has_excerpt()) : ?>
+                            <p class="article-excerpt"><?php echo esc_html(get_the_excerpt()); ?></p>
+                        <?php endif; ?>
                     </header>
 
                     <?php if (has_post_thumbnail()) : ?>
-                        <div class="article-featured-image">
+                        <figure class="article-featured-image">
                             <?php the_post_thumbnail('full'); ?>
-                        </div>
+                            <?php if ($caption = get_the_post_thumbnail_caption()) : ?>
+                                <figcaption><?php echo esc_html($caption); ?></figcaption>
+                            <?php endif; ?>
+                        </figure>
                     <?php endif; ?>
 
-                    <div class="entry-content">
+                    <div class="article-body markdown-body">
                         <?php
                         the_content();
-                        
+
                         wp_link_pages(array(
                             'before' => '<div class="page-links">' . esc_html__('עמודים:', 'or-travel-child'),
                             'after'  => '</div>',
@@ -55,7 +65,7 @@ get_header(); ?>
                         ?>
                     </div>
 
-                    <footer class="entry-footer">
+                    <footer class="article-footer">
                         <?php
                         // Display tags if available
                         $tags = get_the_tags();
@@ -96,11 +106,12 @@ get_header(); ?>
                     <?php
                     // Navigation to next/previous article
                     the_post_navigation(array(
-                        'prev_text' => '<span class="nav-subtitle">' . __('הכתבה הקודמת:', 'or-travel-child') . '</span> <span class="nav-title">%title</span>',
-                        'next_text' => '<span class="nav-subtitle">' . __('הכתבה הבאה:', 'or-travel-child') . '</span> <span class="nav-title">%title</span>',
+                        'prev_text' => '<span class="nav-subtitle">' . __('הכתבה הקודמת', 'or-travel-child') . '</span><span class="nav-title">%title</span>',
+                        'next_text' => '<span class="nav-subtitle">' . __('הכתבה הבאה', 'or-travel-child') . '</span><span class="nav-title">%title</span>',
+                        'screen_reader_text' => __('ניווט בין כתבות', 'or-travel-child'),
                     ));
                     ?>
-                    
+
                 </article>
 
                 <?php
