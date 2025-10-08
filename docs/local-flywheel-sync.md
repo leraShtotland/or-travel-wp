@@ -6,14 +6,14 @@ Flywheel hosting and your VS Code development environment.
 
 ## Overview
 
-1. Clone this repository locally.
-2. Import or create a Local site that is connected to Flywheel.
-3. Replace the Local site's `wp-content` with the version from this repository.
-4. Develop using VS Code with the cloned files.
-5. Push theme changes back to GitHub and deploy them to Flywheel through Local.
+1. Clone this repository locally and open it in VS Code.
+2. Pull the production Flywheel site down to your machine using Local.
+3. Point the Local site at this repository's `wp-content` directory so Local, VS Code, and Git share the same files.
+4. Develop and test inside Local; commit your changes to GitHub.
+5. Push the verified theme back up to Flywheel directly from the Local app.
 
-The goal is to ensure that the production site always reflects the theme stored in Git while letting you iterate locally with
-standard development tooling.
+Following this flow guarantees that the production site always reflects the code stored in GitHub, while letting you iterate
+locally with familiar tooling.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ standard development tooling.
 - Git installed and configured with access to this repository.
 - VS Code (or another editor) configured for WordPress/PHP development.
 
-## 1. Clone the repository
+## 1. Clone the repository and open it in VS Code
 
 ```bash
 cd ~/Projects
@@ -45,26 +45,29 @@ code .
 
 > **Tip:** Local creates a dedicated directory for the site on your machine (e.g., `~/Local Sites/orhorvitztravel/app/public`).
 
-## 3. Replace Local's `wp-content` with the repository
+## 3. Point Local at the repository's `wp-content`
 
-1. Stop the site inside Local to avoid file locking.
-2. Rename the Local-generated `wp-content` directory to keep a backup:
+Run the helper script to wire the repository and Local together:
 
-   ```bash
-   mv "~/Local Sites/orhorvitztravel/app/public/wp-content" \
-      "~/Local Sites/orhorvitztravel/app/public/wp-content.backup"
-   ```
+```bash
+./bin/sync-local.sh --site-name orhorvitztravel --symlink
+```
 
-3. Create a symlink from the repository's `wp-content` to the Local site so both Local and VS Code use the same files:
+The script locates the Local site inside `~/Local Sites`, backs up the existing `wp-content`, and replaces it with a symlink that
+points to the repository's copy. When you save files in VS Code they show up instantly in the Local environment.
 
-   ```bash
-   ln -s "$PWD/wp-content" "~/Local Sites/orhorvitztravel/app/public/wp-content"
-   ```
+If you prefer copying files instead of linking, drop the `--symlink` flag (or add `--pull` when you need to pull changes from
+Local back into Git):
 
-4. Restart the site inside Local. WordPress now loads the theme files tracked in Git.
+```bash
+./bin/sync-local.sh --site-name orhorvitztravel --copy
+```
 
-If you prefer not to use symlinks, you can copy the repository's `wp-content` directory into the Local site whenever you need to
-update it. Symlinks ensure that saving in VS Code immediately updates the Local environment.
+After linking or copying, start the site again inside Local and visit the Local domain. You should immediately see the OR Travel
+theme. If WordPress still shows another theme, go to **Appearance → Themes** and activate **OR Travel Child**.
+
+> **Windows note:** The script falls back to copy mode if symlinks are unavailable. Run VS Code and Local as Administrator once if
+> you want to use symlinks on Windows.
 
 ## 4. Develop with VS Code
 
@@ -84,10 +87,22 @@ update it. Symlinks ensure that saving in VS Code immediately updates the Local 
    git push origin main
    ```
 
-3. Deploy to Flywheel through Local:
-   - In Local, open the site and click **Push to Flywheel**.
-   - Confirm that you want to deploy the files and database if needed.
-   - Local uploads the theme to Flywheel, making the production site match your repository.
+3. Create a Flywheel env file for the CLI deploy script:
+
+   ```bash
+   cp .env.flywheel.example .env.flywheel
+   ```
+
+   Fill in the SFTP host, username, and either a password or private key path from the Flywheel dashboard.
+
+4. Deploy to Flywheel. You have two options:
+   - **From Local:** open the site in Local and click **Push to Flywheel**.
+   - **From the repository:** run `./bin/deploy-to-flywheel.sh` (or `./bin/deploy-to-flywheel.sh --only-themes` if you only want
+     to sync the `themes` directory). The script uses SFTP credentials stored in `.env.flywheel` to mirror the repository's
+     `wp-content` to the Flywheel server, skipping uploads and cache directories by default.
+
+5. After Local reports a successful deployment, spot-check the production site at
+   `https://orhorvitztravel.flywheelsites.com/` to confirm the changes went live.
 
 ## 6. Keeping Flywheel up to date
 
