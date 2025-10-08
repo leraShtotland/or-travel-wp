@@ -112,3 +112,9 @@ docker compose down
 ```
 
 This stops all services while leaving the database volume intact for the next session.
+
+## 9. Working with Flywheel and Local
+
+If you manage the production site on Flywheel and prefer to develop using the Local desktop app and VS Code, follow the
+[Local ↔ Flywheel Workflow](docs/local-flywheel-sync.md). The guide walks through cloning this repository, wiring the
+`wp-content` directory into a Local-connected Flywheel site, and keeping GitHub, Local, and the Flywheel environment in sync.
