@@ -225,7 +225,103 @@ function or_travel_seed_initial_content() {
     or_travel_ensure_about_page();
     or_travel_ensure_article_categories();
     or_travel_ensure_initial_us_article();
-    or_travel_ensure_us_articles_menu_item();
+
+    $consultation_page_id = or_travel_ensure_page(
+        'consultation',
+        __('פגישת ייעוץ', 'or-travel-child'),
+        implode(
+            "\n\n",
+            array(
+                '<p>בחרו יום ושעה שמתאימים לכם ופגישה אישית תעזור לנו להכיר את החלום האמריקאי שלכם מקרוב.</p>',
+                '<ul><li>היכרות עם סגנון הטיול והקצב שלכם</li><li>בחירת יעדים וחוויות שמדברות אליכם</li><li>התאמת מסלול ראשונית ולוחות זמנים</li></ul>',
+                '<p>השאירו פרטים ונחזור אליכם עם הצעה מותאמת אישית.</p>',
+            )
+        )
+    );
+
+    $services_page_id = or_travel_ensure_page(
+        'services-packages',
+        __('שירותים וחבילות', 'or-travel-child'),
+        implode(
+            "\n\n",
+            array(
+                '<p>הצוות שלנו מלווה אתכם מהרעיון הראשון ועד החזרה לארץ עם מגוון חבילות תכנון.</p>',
+                '<h3>מה כולל כל תכנון?</h3>',
+                '<ul><li>שיחת אפיון מעמיקה</li><li>בניית מסלול מפורט עם זמני נסיעה ומפת תחנות</li><li>המלצות עדכניות ללינה, אטרקציות ומסעדות</li><li>ליווי וזמינות בזמן אמת לאורך כל הטיול</li></ul>',
+                '<p>נשמח להתאים עבורכם את החבילה המדויקת לצרכים שלכם.</p>',
+            )
+        )
+    );
+
+    $contact_page_id = or_travel_ensure_page(
+        'contact',
+        __('צור קשר', 'or-travel-child'),
+        implode(
+            "\n\n",
+            array(
+                '<p>יש לכם שאלות, רעיון למסלול או רוצים שנתחיל לתכנן יחד?</p>',
+                '<p>כתבו לנו ל- <a href="mailto:hello@or-travel.co.il">hello@or-travel.co.il</a> או התקשרו ל- 03-5551234.</p>',
+                '<p>מלאו את הטופס ונשוב אליכם בהקדם עם כל המידע.</p>',
+            )
+        )
+    );
+
+    $consultation_menu_item = $consultation_page_id
+        ? array(
+            'title'     => __('פגישת ייעוץ', 'or-travel-child'),
+            'type'      => 'post_type',
+            'object'    => 'page',
+            'object_id' => $consultation_page_id,
+        )
+        : array(
+            'title' => __('פגישת ייעוץ', 'or-travel-child'),
+            'type'  => 'custom',
+            'url'   => home_url('/consultation/'),
+        );
+
+    $services_menu_item = $services_page_id
+        ? array(
+            'title'     => __('שירותים וחבילות', 'or-travel-child'),
+            'type'      => 'post_type',
+            'object'    => 'page',
+            'object_id' => $services_page_id,
+        )
+        : array(
+            'title' => __('שירותים וחבילות', 'or-travel-child'),
+            'type'  => 'custom',
+            'url'   => home_url('/services-packages/'),
+        );
+
+    $contact_menu_item = $contact_page_id
+        ? array(
+            'title'     => __('צור קשר', 'or-travel-child'),
+            'type'      => 'post_type',
+            'object'    => 'page',
+            'object_id' => $contact_page_id,
+        )
+        : array(
+            'title' => __('צור קשר', 'or-travel-child'),
+            'type'  => 'custom',
+            'url'   => home_url('/contact/'),
+        );
+
+    or_travel_ensure_primary_menu(
+        array(
+            array(
+                'title' => __('ראשי', 'or-travel-child'),
+                'type'  => 'custom',
+                'url'   => home_url('/'),
+            ),
+            array(
+                'title' => __('כתבות', 'or-travel-child'),
+                'type'  => 'post_type_archive',
+                'object' => 'us_article',
+            ),
+            $consultation_menu_item,
+            $services_menu_item,
+            $contact_menu_item,
+        )
+    );
 }
 
 function or_travel_ensure_about_page() {
@@ -339,7 +435,104 @@ function or_travel_ensure_initial_us_article() {
     }
 }
 
-function or_travel_ensure_us_articles_menu_item() {
+function or_travel_ensure_page($slug, $title, $content, $template = '') {
+    $page = get_page_by_path($slug);
+
+    if ($page instanceof WP_Post) {
+        $page_id = $page->ID;
+    } else {
+        $page_data = array(
+            'post_title'   => $title,
+            'post_name'    => sanitize_title($slug),
+            'post_status'  => 'publish',
+            'post_type'    => 'page',
+            'post_content' => $content,
+            'post_author'  => get_current_user_id() ?: 1,
+        );
+
+        $page_id = wp_insert_post($page_data, true);
+
+        if (is_wp_error($page_id)) {
+            return 0;
+        }
+    }
+
+    if ($template) {
+        $current_template = get_page_template_slug($page_id);
+        if ($current_template !== $template) {
+            update_post_meta($page_id, '_wp_page_template', $template);
+        }
+    }
+
+    return (int) $page_id;
+}
+
+function or_travel_normalize_url($url) {
+    if (empty($url)) {
+        return '';
+    }
+
+    $parts = wp_parse_url($url);
+
+    if (false === $parts) {
+        return trim($url);
+    }
+
+    $scheme   = isset($parts['scheme']) ? $parts['scheme'] . '://' : '';
+    $host     = isset($parts['host']) ? $parts['host'] : '';
+    $port     = isset($parts['port']) ? ':' . $parts['port'] : '';
+    $path     = isset($parts['path']) ? $parts['path'] : '';
+    $query    = isset($parts['query']) ? '?' . $parts['query'] : '';
+    $fragment = isset($parts['fragment']) ? '#' . $parts['fragment'] : '';
+
+    if ($path !== '') {
+        $path = trailingslashit($path);
+    }
+
+    if ($scheme && $host) {
+        return $scheme . $host . $port . $path . $query . $fragment;
+    }
+
+    return $path . $query . $fragment;
+}
+
+function or_travel_menu_item_signature($item) {
+    if (!empty($item['type'])) {
+        if ('post_type' === $item['type'] && !empty($item['object']) && !empty($item['object_id'])) {
+            return 'post_type:' . $item['object'] . ':' . (int) $item['object_id'];
+        }
+
+        if ('post_type_archive' === $item['type'] && !empty($item['object'])) {
+            return 'archive:' . $item['object'];
+        }
+
+        if ('custom' === $item['type'] && !empty($item['url'])) {
+            return 'custom:' . or_travel_normalize_url($item['url']);
+        }
+    }
+
+    return '';
+}
+
+function or_travel_existing_menu_signature($item) {
+    if (isset($item->type)) {
+        if ('post_type' === $item->type && !empty($item->object) && !empty($item->object_id)) {
+            return 'post_type:' . $item->object . ':' . (int) $item->object_id;
+        }
+
+        if ('post_type_archive' === $item->type && !empty($item->object)) {
+            return 'archive:' . $item->object;
+        }
+
+        if ('custom' === $item->type && !empty($item->url)) {
+            return 'custom:' . or_travel_normalize_url($item->url);
+        }
+    }
+
+    return '';
+}
+
+function or_travel_ensure_primary_menu(array $desired_items) {
     $locations = get_nav_menu_locations();
     $menu_id   = isset($locations['primary']) ? (int) $locations['primary'] : 0;
 
@@ -360,25 +553,59 @@ function or_travel_ensure_us_articles_menu_item() {
         return;
     }
 
-    $target_url = trailingslashit(home_url('/us-articles/'));
-    $menu_items = wp_get_nav_menu_items($menu->term_id);
+    $existing_items = wp_get_nav_menu_items($menu->term_id, array('order' => 'ASC'));
 
-    if ($menu_items) {
-        foreach ($menu_items as $item) {
-            if (trailingslashit($item->url) === $target_url) {
-                return;
-            }
+    $desired_signatures = array();
+    foreach ($desired_items as $item) {
+        $desired_signatures[] = or_travel_menu_item_signature($item);
+    }
+
+    $current_signatures = array();
+    if ($existing_items) {
+        foreach ($existing_items as $existing) {
+            $current_signatures[] = or_travel_existing_menu_signature($existing);
         }
     }
 
-    wp_update_nav_menu_item(
-        $menu->term_id,
-        0,
-        array(
-            'menu-item-title'  => __('כתבות בארצות הברית', 'or-travel-child'),
-            'menu-item-url'    => $target_url,
-            'menu-item-status' => 'publish',
-            'menu-item-type'   => 'custom',
-        )
-    );
+    if ($desired_signatures === $current_signatures) {
+        return;
+    }
+
+    if ($existing_items) {
+        foreach ($existing_items as $existing) {
+            wp_delete_post($existing->ID, true);
+        }
+    }
+
+    foreach ($desired_items as $position => $item) {
+        $args = array(
+            'menu-item-title'     => $item['title'],
+            'menu-item-status'    => 'publish',
+            'menu-item-position'  => $position + 1,
+            'menu-item-parent-id' => 0,
+        );
+
+        if ('custom' === $item['type']) {
+            $args['menu-item-type'] = 'custom';
+            $args['menu-item-url']  = isset($item['url']) ? $item['url'] : home_url('/');
+        } elseif ('post_type_archive' === $item['type']) {
+            $args['menu-item-type']   = 'post_type_archive';
+            $args['menu-item-object'] = $item['object'];
+
+            $archive_url = get_post_type_archive_link($item['object']);
+            if ($archive_url) {
+                $args['menu-item-url'] = $archive_url;
+            }
+        } elseif ('post_type' === $item['type']) {
+            if (!empty($item['object']) && !empty($item['object_id'])) {
+                $args['menu-item-type']      = 'post_type';
+                $args['menu-item-object']    = $item['object'];
+                $args['menu-item-object-id'] = (int) $item['object_id'];
+            } else {
+                continue;
+            }
+        }
+
+        wp_update_nav_menu_item($menu->term_id, 0, $args);
+    }
 }
