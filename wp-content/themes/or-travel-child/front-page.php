@@ -4,6 +4,26 @@
  */
 
 get_header();
+
+$experience_image_data_uri = '';
+$experience_image_data_path = get_stylesheet_directory() . '/assets/images/experience-lake.base64';
+
+if ( file_exists( $experience_image_data_path ) ) {
+    $encoded_image = trim( file_get_contents( $experience_image_data_path ) );
+
+    if ( ! empty( $encoded_image ) ) {
+        $experience_image_data_uri = 'data:image/jpeg;base64,' . $encoded_image;
+    }
+}
+
+$experience_image_style = '';
+
+if ( $experience_image_data_uri ) {
+    $experience_image_style = sprintf(
+        ' style="background-image: url(\'%s\');"',
+        esc_attr( $experience_image_data_uri )
+    );
+}
 ?>
 
 <main class="or-front-page">
@@ -132,7 +152,7 @@ get_header();
                 </li>
             </ul>
         </div>
-        <div class="or-experience__image" style="background-image: url('https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1200&q=80');"></div>
+        <div class="or-experience__image"<?php echo $experience_image_style; ?>></div>
     </section>
 
     <section class="or-process">

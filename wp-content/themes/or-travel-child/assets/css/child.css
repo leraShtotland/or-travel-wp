@@ -1613,6 +1613,16 @@ blockquote {
     background-size: cover;
     background-position: center;
     box-shadow: 0 30px 70px rgba(15, 23, 42, 0.18);
+    position: relative;
+    overflow: hidden;
+}
+
+.or-experience__image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.45) 0%, rgba(37, 99, 235, 0.35) 55%, rgba(15, 118, 110, 0.55) 100%);
+    pointer-events: none;
 }
 
 .or-process {
