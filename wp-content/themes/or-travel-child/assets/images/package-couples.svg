@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1067" role="img" aria-labelledby="title desc">
+  <title id="title">Romantic couples travel illustration</title>
+  <desc id="desc">Atmospheric gradient background inspired by sunsets and city lights.</desc>
+  <defs>
+    <linearGradient id="couplesGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1b2845" />
+      <stop offset="45%" stop-color="#753a88" />
+      <stop offset="100%" stop-color="#cc2b5e" />
+    </linearGradient>
+    <radialGradient id="moonGlow" cx="70%" cy="24%" r="34%">
+      <stop offset="0%" stop-color="#ffe1f2" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#ffe1f2" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="horizonGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f9d423" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#f83600" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1067" fill="url(#couplesGradient)" />
+  <circle cx="1120" cy="220" r="360" fill="url(#moonGlow)" />
+  <path d="M0 760c120-80 300-140 480-120 180 20 360 120 520 150 160 30 300-10 440-90v367H0z" fill="url(#horizonGlow)" />
+  <g fill="#ffeef9" fill-opacity="0.2">
+    <path d="M320 310c60-70 160-110 260-90s180 100 260 140 160 40 240 10 160-100 220-170l140 160c-70 90-180 160-300 190s-260 10-360-40c-100-50-170-130-260-170s-200-40-300 20z" />
+  </g>
+  <g fill="#ffeef9" fill-opacity="0.06">
+    <circle cx="420" cy="880" r="130" />
+    <circle cx="610" cy="930" r="110" />
+    <circle cx="820" cy="900" r="140" />
+    <circle cx="1030" cy="870" r="120" />
+  </g>
+</svg>

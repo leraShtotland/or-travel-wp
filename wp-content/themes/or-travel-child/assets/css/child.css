@@ -1549,7 +1549,10 @@ blockquote {
 .or-showcase__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.85) 100%);
+    background: linear-gradient(210deg, rgba(15, 23, 42, 0.18) 0%, rgba(15, 23, 42, 0.4) 55%, rgba(15, 23, 42, 0.68) 100%),
+        radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.18), transparent 55%);
+    mix-blend-mode: normal;
+    backdrop-filter: saturate(115%) brightness(0.98);
 }
 
 .or-showcase__content {

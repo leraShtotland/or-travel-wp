@@ -87,7 +87,7 @@ get_header();
             <p>בחרו את סוג החוויה שמתאים לכם והמסע כבר מתחיל לקרום עור וגידים</p>
         </div>
         <div class="or-showcase__grid">
-            <article class="or-showcase__card" style="background-image: url('https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&w=1200&q=80');">
+            <article class="or-showcase__card" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/package-family.svg' ); ?>');">
                 <div class="or-showcase__overlay"></div>
                 <div class="or-showcase__content">
                     <span class="or-label">משפחות</span>
@@ -95,7 +95,7 @@ get_header();
                     <p>שילוב מדויק של פארקים, טבע וחוויות משותפות – עם איזון נכון בין אקשן למנוחה.</p>
                 </div>
             </article>
-            <article class="or-showcase__card" style="background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80');">
+            <article class="or-showcase__card" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/package-couples.svg' ); ?>');">
                 <div class="or-showcase__overlay"></div>
                 <div class="or-showcase__content">
                     <span class="or-label">זוגות</span>
@@ -103,7 +103,7 @@ get_header();
                     <p>יקבים, חופים, ערים מלאות תרבות והפתעות קטנות שמחכות רק לכם.</p>
                 </div>
             </article>
-            <article class="or-showcase__card" style="background-image: url('https://images.unsplash.com/photo-1520962918287-7448c2878f65?auto=format&fit=crop&w=1200&q=80');">
+            <article class="or-showcase__card" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/package-adventure.svg' ); ?>');">
                 <div class="or-showcase__overlay"></div>
                 <div class="or-showcase__content">
                     <span class="or-label">הרפתקאות</span>

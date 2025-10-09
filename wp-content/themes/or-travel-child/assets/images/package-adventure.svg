@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1067" role="img" aria-labelledby="title desc">
+  <title id="title">Adventure travel illustration</title>
+  <desc id="desc">Dynamic gradient background with rugged shapes and energetic colors.</desc>
+  <defs>
+    <linearGradient id="adventureGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f2027" />
+      <stop offset="50%" stop-color="#203a43" />
+      <stop offset="100%" stop-color="#2c5364" />
+    </linearGradient>
+    <radialGradient id="summitGlow" cx="55%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#88d3ce" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#88d3ce" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="ridgeGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f0f2f0" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1067" fill="url(#adventureGradient)" />
+  <circle cx="880" cy="320" r="520" fill="url(#summitGlow)" />
+  <g fill="#7dd3fc" fill-opacity="0.22">
+    <path d="M0 700c140-90 340-150 540-120s390 150 550 130c160-20 310-160 510-220v577H0z" />
+  </g>
+  <g fill="#cbd5f5" fill-opacity="0.08">
+    <path d="M0 560c120-60 240-140 360-170 120-30 240-10 360 40 120 50 240 130 360 160s240 10 360-50v100c-120 70-240 110-360 110s-240-40-360-90c-120-50-240-110-360-120-120-10-240 30-360 100z" />
+  </g>
+  <rect y="860" width="1600" height="207" fill="url(#ridgeGlow)" />
+  <g fill="#ffffff" fill-opacity="0.05">
+    <circle cx="260" cy="220" r="80" />
+    <circle cx="440" cy="180" r="60" />
+    <circle cx="620" cy="260" r="90" />
+    <circle cx="1240" cy="180" r="120" />
+    <circle cx="1380" cy="300" r="70" />
+  </g>
+</svg>
