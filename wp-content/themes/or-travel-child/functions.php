@@ -138,16 +138,28 @@ add_action('init', function() {
 // Add Markdown support for articles
 require_once get_stylesheet_directory() . '/includes/markdown-parser.php';
 
-// Convert Markdown to HTML for article content
+// Disable wpautop for articles to prevent redundant <p> tags
 add_filter('the_content', function($content) {
     if (is_singular('us_article')) {
+        // Remove wpautop filter for articles
+        remove_filter('the_content', 'wpautop');
+        
         // Check if content looks like markdown (has markdown syntax)
         if (preg_match('/[#*\[\]`]/', $content)) {
             $content = or_travel_parse_markdown($content);
         }
     }
     return $content;
-}, 10);
+}, 9); // Priority 9 to run before wpautop (which runs at 10)
+
+// Ensure wpautop is completely disabled for us_article post type
+add_filter('wpautop_tags', function($tags) {
+    global $post;
+    if ($post && $post->post_type === 'us_article') {
+        return array(); // Return empty array to disable wpautop
+    }
+    return $tags;
+});
 
 // Add custom meta box for markdown file upload
 add_action('add_meta_boxes', function() {
