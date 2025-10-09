@@ -16,9 +16,16 @@ get_header(); ?>
                 <article id="post-<?php the_ID(); ?>" <?php post_class('travel-article'); ?>>
 
                     <?php
-                    $hero_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
-                    if (!$hero_image) {
-                        $hero_image = 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1600&q=80';
+                    // Use a specific Colorado image for the hero background
+                    $post_slug = get_post_field('post_name', get_the_ID());
+                    if ($post_slug === 'colorado') {
+                        // Use Maroon Bells image for Colorado article
+                        $hero_image = home_url('/wp-content/uploads/2025/01/colorado/maroon-bells-2.jpg');
+                    } else {
+                        $hero_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                        if (!$hero_image) {
+                            $hero_image = 'https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=1600&q=80';
+                        }
                     }
 
                     $raw_content = get_post_field('post_content', get_the_ID());

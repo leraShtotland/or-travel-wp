@@ -27,7 +27,7 @@ if ( $experience_image_data_uri ) {
 ?>
 
 <main class="or-front-page">
-    <section class="or-hero" style="background-image: url('<?php echo esc_url( 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1600&q=80' ); ?>');">
+    <section class="or-hero" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/homepage/hero-bg.jpg' ); ?>');">
         <div class="or-hero__overlay"></div>
         <div class="or-hero__content">
             <span class="or-label">אור טראוול • מסעות בהתאמה אישית</span>
@@ -101,34 +101,45 @@ if ( $experience_image_data_uri ) {
         </div>
     </section>
 
-    <section class="or-showcase" id="packages">
+    <section class="or-destinations" id="destinations">
         <div class="or-section-header">
-            <h2>החבילות שלנו מחכות לכם</h2>
-            <p>בחרו את סוג החוויה שמתאים לכם והמסע כבר מתחיל לקרום עור וגידים</p>
+            <h2>יעדים מומלצים</h2>
+            <p>גלו את היעדים המדהימים שאני מכיר לעומק ויכול להציע לכם חוויה בלתי נשכחת</p>
         </div>
-        <div class="or-showcase__grid">
-            <article class="or-showcase__card" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/package-family.svg' ); ?>');">
-                <div class="or-showcase__overlay"></div>
-                <div class="or-showcase__content">
-                    <span class="or-label">משפחות</span>
-                    <h3>הרפתקה משפחתית מתוקתקת</h3>
-                    <p>שילוב מדויק של פארקים, טבע וחוויות משותפות – עם איזון נכון בין אקשן למנוחה.</p>
+        <div class="or-destinations__grid">
+            <article class="or-destination-card" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/homepage/europe.jpg' ); ?>');">
+                <div class="or-destination-card__overlay"></div>
+                <div class="or-destination-card__content">
+                    <h3>אירופה</h3>
+                    <p>תרבות, אמנות והיסטוריה בכל פינה</p>
                 </div>
             </article>
-            <article class="or-showcase__card" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/package-couples.svg' ); ?>');">
-                <div class="or-showcase__overlay"></div>
-                <div class="or-showcase__content">
-                    <span class="or-label">זוגות</span>
-                    <h3>בריחה זוגית מלאת השראה</h3>
-                    <p>יקבים, חופים, ערים מלאות תרבות והפתעות קטנות שמחכות רק לכם.</p>
+            <article class="or-destination-card" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/homepage/asia.jpg' ); ?>');">
+                <div class="or-destination-card__overlay"></div>
+                <div class="or-destination-card__content">
+                    <h3>אסיה</h3>
+                    <p>אקזוטיקה, רוחניות וחוויות ייחודיות</p>
                 </div>
             </article>
-            <article class="or-showcase__card" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/package-adventure.svg' ); ?>');">
-                <div class="or-showcase__overlay"></div>
-                <div class="or-showcase__content">
-                    <span class="or-label">הרפתקאות</span>
-                    <h3>מסע שטח מלא אדרנלין</h3>
-                    <p>מסלולי הליכה, מפגשים עם טבע פראי ופינות נסתרות שמוכרות רק למטיילים מנוסים.</p>
+            <article class="or-destination-card" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/homepage/africa.jpg' ); ?>');">
+                <div class="or-destination-card__overlay"></div>
+                <div class="or-destination-card__content">
+                    <h3>אפריקה</h3>
+                    <p>טבע פראי והרפתקאות בלתי נשכחות</p>
+                </div>
+            </article>
+            <article class="or-destination-card" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/homepage/america.jpg' ); ?>');">
+                <div class="or-destination-card__overlay"></div>
+                <div class="or-destination-card__content">
+                    <h3>אמריקה</h3>
+                    <p>מגוון עצום של נופים וחוויות</p>
+                </div>
+            </article>
+            <article class="or-destination-card" style="background-image: url('<?php echo esc_url( get_stylesheet_directory_uri() . '/assets/images/homepage/israel.jpg' ); ?>');">
+                <div class="or-destination-card__overlay"></div>
+                <div class="or-destination-card__content">
+                    <h3>ישראל</h3>
+                    <p>היסטוריה, טבע ותרבות במרחק נגיעה</p>
                 </div>
             </article>
         </div>
