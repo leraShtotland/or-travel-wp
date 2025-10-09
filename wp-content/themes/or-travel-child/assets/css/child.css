@@ -1391,11 +1391,79 @@ blockquote {
     color: rgba(255, 255, 255, 0.7);
 }
 
+.or-label--dark {
+    background: rgba(59, 130, 246, 0.12);
+    color: #1e3a8a;
+}
+
+.or-story {
+    background: #fff;
+    margin-top: -80px;
+    border-radius: 36px;
+    box-shadow: 0 30px 70px rgba(15, 23, 42, 0.18);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+
+.or-story__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    padding: 70px 48px;
+}
+
+.or-story__intro h2 {
+    font-size: clamp(30px, 4.5vw, 44px);
+    margin-bottom: 16px;
+}
+
+.or-story__intro p {
+    font-size: 18px;
+    color: #1f2937;
+    line-height: 1.8;
+}
+
+.or-story__quote {
+    margin-top: 24px;
+    padding: 20px 24px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(30, 64, 175, 0.08) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    color: #1e3a8a;
+    font-weight: 600;
+    line-height: 1.8;
+}
+
+.or-story__details {
+    display: grid;
+    gap: 18px;
+    color: #4b5563;
+    line-height: 1.9;
+}
+
+.or-story__highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.or-story__highlight {
+    background: #f8fafc;
+    border-radius: 20px;
+    padding: 18px 20px;
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.25);
+    font-weight: 600;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
 .or-intro {
     display: grid;
     gap: 40px;
     background: #fff;
-    margin-top: -80px;
+    margin-top: 40px;
     border-radius: 32px;
     box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
 }
@@ -1547,6 +1615,56 @@ blockquote {
     box-shadow: 0 30px 70px rgba(15, 23, 42, 0.18);
 }
 
+.or-process {
+    background: #fff;
+    border-radius: 36px;
+    box-shadow: 0 28px 70px rgba(15, 23, 42, 0.14);
+    padding: 70px 48px;
+    margin: 60px auto;
+}
+
+.or-process__steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.or-process__step {
+    background: linear-gradient(180deg, rgba(219, 234, 254, 0.7) 0%, rgba(191, 219, 254, 0.5) 100%);
+    border-radius: 28px;
+    padding: 32px 28px;
+    box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.25);
+    text-align: right;
+    position: relative;
+    overflow: hidden;
+}
+
+.or-process__number {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: #1d4ed8;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 12px 30px rgba(29, 78, 216, 0.35);
+}
+
+.or-process__step h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+    color: #1e3a8a;
+}
+
+.or-process__step p {
+    color: #1f2937;
+    line-height: 1.8;
+}
+
 .or-articles__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1686,8 +1804,20 @@ blockquote {
         padding: 120px 32px 80px;
     }
 
-    .or-intro {
+    .or-story {
         margin-top: -60px;
+    }
+
+    .or-story__grid {
+        padding: 56px 32px;
+    }
+
+    .or-intro {
+        margin-top: 20px;
+    }
+
+    .or-process {
+        padding: 60px 32px;
     }
 
     .or-hero__stats {
@@ -1710,12 +1840,29 @@ blockquote {
         align-items: stretch;
     }
 
+    .or-story {
+        margin-top: -40px;
+    }
+
+    .or-story__grid {
+        padding: 48px 24px;
+    }
+
+    .or-story__quote {
+        margin-top: 18px;
+    }
+
     .or-intro__content {
         padding: 48px 28px;
     }
 
     .or-experience__content {
         padding: 40px 28px;
+    }
+
+    .or-process {
+        padding: 50px 24px;
+        margin: 40px auto;
     }
 
     .or-testimonials__slider {
@@ -1726,6 +1873,14 @@ blockquote {
 @media (max-width: 480px) {
     .or-button {
         width: 100%;
+    }
+
+    .or-story__highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .or-process__steps {
+        grid-template-columns: 1fr;
     }
 
     .or-showcase__card {

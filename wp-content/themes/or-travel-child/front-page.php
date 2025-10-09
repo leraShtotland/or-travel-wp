@@ -7,86 +7,108 @@ get_header();
 ?>
 
 <main class="or-front-page">
-    <section class="or-hero" style="background-image: url('<?php echo esc_url( 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1600&q=80' ); ?>');">
+    <section class="or-hero" style="background-image: url('<?php echo esc_url( 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1600&q=80' ); ?>');">
         <div class="or-hero__overlay"></div>
         <div class="or-hero__content">
-            <span class="or-label">טיולים בהתאמה אישית</span>
-            <h1>מתכננים עבורך את החופשה האמריקאית המושלמת</h1>
-            <p>חלמתם על מסע משפחתי בפלורידה, טיול טבע עוצר נשימה או ירח דבש רומנטי בחוף המערבי? אנחנו כאן כדי להפוך את זה למציאות.
-            </p>
+            <span class="or-label">אור טראוול • מסעות בהתאמה אישית</span>
+            <h1>ביחד נגשים את החלום לטיול המושלם שלכם</h1>
+            <p>אחרי שנים של טיולים, כתיבה והובלת מסעות ברחבי העולם, אני כאן כדי להפוך את הרצונות שלכם למסלול חכם, רגוע ומרגש – כזה שנשאר בזיכרון לכל החיים.</p>
             <div class="or-hero__cta">
-                <a class="or-button or-button--primary" href="<?php echo esc_url( home_url( '/contact' ) ); ?>">לתיאום שיחת ייעוץ</a>
-                <a class="or-button or-button--ghost" href="<?php echo esc_url( home_url( '/us-articles' ) ); ?>">גלו השראה לטיול שלכם</a>
+                <a class="or-button or-button--primary" href="<?php echo esc_url( home_url( '/contact' ) ); ?>">לתיאום שיחת היכרות</a>
+                <a class="or-button or-button--ghost" href="#packages">לגלות את החבילות</a>
             </div>
         </div>
         <div class="or-hero__stats">
             <div class="or-stat">
-                <span class="or-stat__number">+180</span>
-                <span class="or-stat__label">מסלולי טיול מותאמים</span>
+                <span class="or-stat__number">15+</span>
+                <span class="or-stat__label">שנות טיולים וניסיון שטח</span>
             </div>
             <div class="or-stat">
-                <span class="or-stat__number">12</span>
-                <span class="or-stat__label">שנות ניסיון בשטח</span>
+                <span class="or-stat__number">300+</span>
+                <span class="or-stat__label">מסעות שתכננתי והובלתי</span>
             </div>
             <div class="or-stat">
-                <span class="or-stat__number">97%</span>
-                <span class="or-stat__label">לקוחות חוזרים וממליצים</span>
+                <span class="or-stat__number">24/7</span>
+                <span class="or-stat__label">ליווי אישי וזמינות מלאה</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="or-story">
+        <div class="or-story__grid">
+            <div class="or-story__intro">
+                <span class="or-label or-label--dark">נעים מאוד</span>
+                <h2>שלום לכם ואיזה כיף שבאתם!</h2>
+                <p>אני אוריק, בן 35, אבא ליובלי ולנגה, בן זוג ללרה, כותב על טיולים ב"הארץ", היסטוריון חובב וסא"ל במילואים. מעבר לכל הטייטלים אני קודם כול איש של אנשים ושל מסעות.</p>
+                <div class="or-story__quote">
+                    <p>אם אין לכם כוח לקרוא את הכל אז תתמקדו רק בזה: השתחררתי מהצבא כדי להגשים את החלום שלי – להגשים את החלומות שלכם.</p>
+                </div>
+            </div>
+            <div class="or-story__details">
+                <p>מאז שאני זוכר את עצמי אני בדרך. הדרך הזו הובילה אותי בין יבשות, תרבויות ואנשים מרתקים. היא נשמרת בחיוכים של מטיילים שחזרו נרגשים, בשירים ששרתי לעצמי כמו "אמריקה" של סיימון וגרפונקל ובאינספור זיכרונות שמזינים את היצירתיות שלי.</p>
+                <p>בין אם מדובר במטרקים לבד, בטיול יוקרתי לזוגות, בחופשה משפחתית מתוקתקת או בטיול דל תקציב – צברתי ידע וניסיון שמאפשרים לי להפוך את כל הפאזל הזה לתוכנית ברורה ומותאמת אישית.</p>
+                <p>הטיול הוא נקודת המפגש שבין אדם ליעד. התפקיד שלי הוא לדייק את המפגש הזה, להוריד מכם את הלחץ של התכנון, לחסוך לכם כסף ולהוסיף ערך עם המלצות שלא תמצאו בגוגל. אני עושה זאת ברגישות, בהגינות, בתשוקה ובעיקר ביחס אישי שמתחיל מהרגע הראשון ונמשך עד אחרי שאתם חוזרים.</p>
+                <div class="or-story__highlights">
+                    <div class="or-story__highlight">שנתיים של חיים ועבודה בארה"ב שהפכו כל פינה באמריקה לבית שני.</div>
+                    <div class="or-story__highlight">מאות רבות של טיולים שתכננתי – בארץ ובעולם – לזוגות, משפחות והרפתקנים.</div>
+                    <div class="or-story__highlight">מעמיק בהיסטוריה, תרבות ואנשים כדי להעניק לכל מסלול עומק ומשמעות.</div>
+                </div>
             </div>
         </div>
     </section>
 
     <section class="or-intro">
         <div class="or-intro__content">
-            <h2>החוויה האמריקאית שמדויקת לכם</h2>
-            <p>אור טראוול מתמחה בבניית מסלולים וחוויות בוטיק ברחבי ארצות הברית. אנו משלבים היכרות עמוקה עם היעדים יחד עם התאמה אישית לצרכים שלכם – החל ממשפחות עם ילדים, דרך זוגות ועד להרפתקנים שמחפשים טיול שונה.</p>
+            <h2>בואו נבנה את המסע שחלמתם עליו</h2>
+            <p>תכנון נכון הופך חופשה למשהו קליל ומרגש. יחד נבין את מי שאתם, מה חשוב לכם, ונרכיב מסלול מדויק – מהטיסות והמלונות ועד לפינות הסודיות שנשמרות רק למקומיים.</p>
             <div class="or-intro__features">
                 <article class="or-feature">
                     <span class="or-feature__icon">🧭</span>
-                    <h3>מסלול אישי ומדויק</h3>
-                    <p>תכנון מא' ועד ת' – טיסות, לינה, אטרקציות וקצב טיול שנבנה במיוחד לפי מי שאתם.</p>
+                    <h3>תכנון מקצה לקצה</h3>
+                    <p>מסלול יומי מפורט, קצב מותאם אישית, המלצות לאוכל, לטבע ולתרבות – הכל מסודר מראש.</p>
                 </article>
                 <article class="or-feature">
-                    <span class="or-feature__icon">💎</span>
-                    <h3>נגיעה של פרימיום</h3>
-                    <p>גישה להמלצות הכי שוות, חוויות בוטיק ואפשרות לשדרוגים שמעניקים לטיול טוויסט ייחודי.</p>
+                    <span class="or-feature__icon">🤲</span>
+                    <h3>יחס אישי באמת</h3>
+                    <p>אני זמין עבורכם לכל שאלה ולכל דילמה, מהפגישה הראשונה ועד שאתם נוחתים בחזרה.</p>
                 </article>
                 <article class="or-feature">
-                    <span class="or-feature__icon">🤝</span>
-                    <h3>ליווי צמוד 24/7</h3>
-                    <p>אנחנו זמינים עבורכם לפני, במהלך ואחרי הטיול כדי להבטיח שתרגישו בטוחים לאורך כל הדרך.</p>
+                    <span class="or-feature__icon">💡</span>
+                    <h3>תובנות מהשטח</h3>
+                    <p>היכרות עמוקה עם היעדים, היסטוריה וסיפורים שמחיים את הטיול והופכים אותו למשמעותי.</p>
                 </article>
             </div>
         </div>
     </section>
 
-    <section class="or-showcase">
+    <section class="or-showcase" id="packages">
         <div class="or-section-header">
-            <h2>מסלולי הדגל שלנו</h2>
-            <p>השראה למסע הבא שלכם בארצות הברית</p>
+            <h2>החבילות שלנו מחכות לכם</h2>
+            <p>בחרו את סוג החוויה שמתאים לכם והמסע כבר מתחיל לקרום עור וגידים</p>
         </div>
         <div class="or-showcase__grid">
             <article class="or-showcase__card" style="background-image: url('https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&w=1200&q=80');">
                 <div class="or-showcase__overlay"></div>
                 <div class="or-showcase__content">
                     <span class="or-label">משפחות</span>
-                    <h3>משפחתי חלומי בפלורידה</h3>
-                    <p>שילוב של פארקי שעשועים, חופי זהב ומפגש עם הטבע הפראי של האברגליידס.</p>
+                    <h3>הרפתקה משפחתית מתוקתקת</h3>
+                    <p>שילוב מדויק של פארקים, טבע וחוויות משותפות – עם איזון נכון בין אקשן למנוחה.</p>
                 </div>
             </article>
             <article class="or-showcase__card" style="background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80');">
                 <div class="or-showcase__overlay"></div>
                 <div class="or-showcase__content">
                     <span class="or-label">זוגות</span>
-                    <h3>חוף מערבי רומנטי</h3>
-                    <p>כביש החוף הקסום של קליפורניה, יקבים, וסן פרנסיסקו הקסומה.</p>
+                    <h3>בריחה זוגית מלאת השראה</h3>
+                    <p>יקבים, חופים, ערים מלאות תרבות והפתעות קטנות שמחכות רק לכם.</p>
                 </div>
             </article>
             <article class="or-showcase__card" style="background-image: url('https://images.unsplash.com/photo-1520962918287-7448c2878f65?auto=format&fit=crop&w=1200&q=80');">
                 <div class="or-showcase__overlay"></div>
                 <div class="or-showcase__content">
                     <span class="or-label">הרפתקאות</span>
-                    <h3>פארקים לאומיים מטורפים</h3>
-                    <p>מסלול מעגלי ביוטה, אריזונה ונבדה עם נופים אדירים וחוויות שטח בלתי נשכחות.</p>
+                    <h3>מסע שטח מלא אדרנלין</h3>
+                    <p>מסלולי הליכה, מפגשים עם טבע פראי ופינות נסתרות שמוכרות רק למטיילים מנוסים.</p>
                 </div>
             </article>
         </div>
@@ -97,20 +119,44 @@ get_header();
             <h2>למה לבחור באור טראוול?</h2>
             <ul class="or-experience__list">
                 <li>
-                    <strong>שנים של חיים ועבודה בארה"ב</strong>
-                    <span>הכרות עם הסודות המקומיים, השכונות השוות והאטרקציות שהמקומיים אוהבים.</span>
+                    <strong>היכרות אמיתית עם היעד</strong>
+                    <span>שנתיים של חיים בארה"ב, קשרים מקומיים וסיפורים קטנים שמכניסים אתכם מתחת לפני השטח.</span>
                 </li>
                 <li>
-                    <strong>תכנון מותאם תקציב</strong>
-                    <span>מתאימים את רמת האירוח, הקצב והאטרקציות לתקציב המדויק שלכם.</span>
+                    <strong>תכנון חכם וחסכוני</strong>
+                    <span>התאמת רמת האירוח, קצב הטיול והאטרקציות לתקציב שלכם – בלי לוותר על החוויה.</span>
                 </li>
                 <li>
-                    <strong>מערך ספקים אמין ומנוסה</strong>
-                    <span>עובדים עם מלונות, מדריכים וספקים מהשורה הראשונה כדי להבטיח חוויה מושלמת.</span>
+                    <strong>מענה אישי לכל אורך הדרך</strong>
+                    <span>ליווי זמין וגמיש, קשר עם ספקים אמינים ותמיכה צמודה לפני, במהלך ואחרי המסע.</span>
                 </li>
             </ul>
         </div>
         <div class="or-experience__image" style="background-image: url('https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1200&q=80');"></div>
+    </section>
+
+    <section class="or-process">
+        <div class="or-section-header">
+            <h2>איך זה עובד?</h2>
+            <p>תהליך עבודה שקוף, אישי וזורם – כדי שתוכלו לצאת לדרך בראש שקט</p>
+        </div>
+        <div class="or-process__steps">
+            <article class="or-process__step">
+                <div class="or-process__number">1</div>
+                <h3>שיחת היכרות</h3>
+                <p>נבין מי אתם, מה חשוב לכם, מה התקציב ומה הופך את הטיול הבא שלכם למושלם.</p>
+            </article>
+            <article class="or-process__step">
+                <div class="or-process__number">2</div>
+                <h3>בניית מסלול חלומי</h3>
+                <p>אני מרכיב עבורכם מסלול מפורט עם זמני נסיעה, המלצות, טיפים והצעות לשדרוג.</p>
+            </article>
+            <article class="or-process__step">
+                <div class="or-process__number">3</div>
+                <h3>ליווי עד הנחיתה</h3>
+                <p>מקבלים חוברת דיגיטלית, תמיכה בוואטסאפ וזמינות מלאה עד שתחזרו עם חיוך ענק.</p>
+            </article>
+        </div>
     </section>
 
     <section class="or-articles">
@@ -190,7 +236,7 @@ get_header();
     <section class="or-cta-large">
         <div class="or-cta-large__content">
             <h2>בואו נתחיל לתכנן את המסע הבא שלכם</h2>
-            <p>ספרו לנו על החלום שלכם ואנחנו נחזור אליכם עם הצעה מותאמת אישית, לוחות זמנים מסודרים ואפשרויות חווייתיות שמתאימות בדיוק למשפחה שלכם.</p>
+            <p>ספרו לי על החלום שלכם ואחזור אליכם עם הצעה מותאמת אישית, לוחות זמנים מסודרים ואפשרויות חווייתיות שמתאימות בדיוק למשפחה שלכם.</p>
             <a class="or-button or-button--light" href="<?php echo esc_url( home_url( '/contact' ) ); ?>">תיאום שיחת היכרות</a>
         </div>
     </section>
