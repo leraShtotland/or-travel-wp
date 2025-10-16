@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1067" role="img" aria-labelledby="title desc">
+  <title id="title">Warm family travel illustration</title>
+  <desc id="desc">Soft geometric gradient background evoking togetherness and shared adventures.</desc>
+  <defs>
+    <linearGradient id="familyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbc2eb" />
+      <stop offset="45%" stop-color="#a6c1ee" />
+      <stop offset="100%" stop-color="#fddb92" />
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="25%" cy="28%" r="45%">
+      <stop offset="0%" stop-color="#fff2d5" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#fbc2eb" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="accentGlow" cx="78%" cy="70%" r="45%">
+      <stop offset="0%" stop-color="#a6c1ee" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#a6c1ee" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1067" fill="url(#familyGradient)" />
+  <circle cx="320" cy="280" r="420" fill="url(#sunGlow)" />
+  <circle cx="1240" cy="780" r="520" fill="url(#accentGlow)" />
+  <g fill="#ffffff" fill-opacity="0.18">
+    <path d="M190 820c90-110 230-190 390-210 160-20 310 30 430 120 120 90 220 210 380 260v120H0V820h190z" />
+    <path d="M1420 280c-70 40-150 70-240 60-90-10-170-60-240-120-70-60-130-130-210-170-80-40-180-40-270 10-90 50-170 150-210 250l-90-40C220 140 360 10 520 0c160-10 320 100 430 210 110 110 180 220 320 260 70 20 150 10 220-20z" />
+  </g>
+  <g fill="#ffffff" fill-opacity="0.08">
+    <circle cx="360" cy="860" r="110" />
+    <circle cx="520" cy="860" r="90" />
+    <circle cx="440" cy="790" r="70" />
+    <circle cx="1050" cy="340" r="140" />
+    <circle cx="1180" cy="420" r="90" />
+  </g>
+</svg>
